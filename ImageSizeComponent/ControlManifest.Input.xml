@@ -2,8 +2,9 @@
 <manifest>
   <control namespace="RYR.PCF" constructor="ImageSizeComponent" version="0.0.1" display-name-key="ImageSizeComponent" description-key="ImageSizeComponent description" control-type="standard">
     <!-- property node identifies a specific, configurable piece of data that the control expects from CDS -->
-    <property name="imageBase64" display-name-key="Base 64 Image" description-key="Base 64 Image" of-type="SingleLine.Text" usage="bound" required="true" />
+    <property name="imageBase64" display-name-key="Base 64 Image" description-key="Base 64 Image" of-type="Multiple" usage="bound" required="true"/>
     <property name="imageSize" display-name-key="Image Size" description-key="Image Size" of-type="SingleLine.Text" usage="output" required="true" />
+    <property name="exifModel" display-name-key="EXIF Model" description-key="EXIF Model" of-type="SingleLine.Text" usage="output" required="true" />
     <!-- 
       Property node's of-type attribute can be of-type-group attribute. 
       Example:

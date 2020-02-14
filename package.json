@@ -11,10 +11,15 @@
   "dependencies": {
     "@types/node": "^10.12.18",
     "@types/powerapps-component-framework": "^1.2.0",
-    "image-size": "^0.8.3"
+    "base64-arraybuffer": "^0.2.0",
+    "exif": "^0.6.0",
+    "exifreader": "^2.13.1",
+    "jimp": "^0.9.3"
   },
   "devDependencies": {
+    "@types/exif": "^0.6.0",
     "pcf-scripts": "^1",
-    "pcf-start": "^1"
+    "pcf-start": "^1",
+    "prettier": "^1.19.1"
   }
 }
