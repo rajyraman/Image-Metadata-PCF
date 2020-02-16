@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <manifest>
-  <control namespace="RYR.PCF" constructor="ImageSizeComponent" version="1.1.3" display-name-key="ImageSizeComponent" description-key="ImageSizeComponent description" control-type="standard">
+  <control namespace="RYR.PCF" constructor="ImageMetadataComponent" version="1.1.5" display-name-key="ImageMetadataComponent" description-key="Displays metadata information of photo from EXIF. Works only on JPG images." control-type="standard">
     <!-- property node identifies a specific, configurable piece of data that the control expects from CDS -->
     <property name="imageBase64" display-name-key="Base 64 Image" description-key="Base 64 Image" of-type="Multiple" usage="bound" required="true"/>
     <property name="imageSize" display-name-key="Image Size" description-key="Image Size" of-type="SingleLine.Text" usage="output" />
@@ -22,8 +22,8 @@
     <resources>
       <code path="index.ts" order="1"/>
       <!-- UNCOMMENT TO ADD MORE RESOURCES
-      <css path="css/ImageSizeComponent.css" order="1" />
-      <resx path="strings/ImageSizeComponent.1033.resx" version="1.0.0" />
+      <css path="css/ImageMetadataComponent.css" order="1" />
+      <resx path="strings/ImageMetadataComponent.1033.resx" version="1.0.0" />
       -->
     </resources>
     <!-- UNCOMMENT TO ENABLE THE SPECIFIED API

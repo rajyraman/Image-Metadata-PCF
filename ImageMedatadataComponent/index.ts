@@ -4,7 +4,7 @@
 import { IInputs, IOutputs } from './generated/ManifestTypes';
 import ExifReader, { Tags } from 'exifreader';
 import { decode } from 'punycode';
-export class ImageSizeComponent
+export class ImageMetadataComponent
   implements ComponentFramework.StandardControl<IInputs, IOutputs> {
   private _imageHeight: string;
   private _imageWidth: string;
@@ -38,24 +38,36 @@ export class ImageSizeComponent
   }
 
   private extractExif(base64Image: string) {
-    if (base64Image?.indexOf('base64') > -1) {
-      base64Image = base64Image.substr(base64Image.indexOf('base64,') + 7);
-    }
-    if (base64Image) {
-      // Add control initialization code
-      const imageBuffer = Uint8Array.from(atob(base64Image), c =>
-        c.charCodeAt(0)
-      ).buffer;
-      const tags = ExifReader.load(imageBuffer);
-      if (tags) {
-        console.log(tags);
-        this._imageWidth = tags['Image Width']?.description;
-        this._imageHeight = tags['Image Height']?.description;
-        this._make = tags?.Make?.description;
-        this._latitude = tags?.GPSLatitude?.description;
-        this._longitude = tags?.GPSLongitude?.description;
-        this._model = tags?.Model?.description;
+    try {
+      if (base64Image?.indexOf('base64') > -1) {
+        base64Image = base64Image.substr(base64Image.indexOf('base64,') + 7);
       }
+      if (base64Image) {
+        // Add control initialization code
+        const imageBuffer = Uint8Array.from(atob(base64Image), c =>
+          c.charCodeAt(0)
+        ).buffer;
+        const tags = ExifReader.load(imageBuffer);
+        if (tags) {
+          console.log(tags);
+          this._imageWidth = tags['Image Width']?.description;
+          this._imageHeight = tags['Image Height']?.description;
+          this._make = tags?.Make?.description;
+          this._latitude = `${
+            tags.GPSLatitudeRef?.description.toLowerCase().startsWith('south')
+              ? '-'
+              : ''
+          }${tags?.GPSLatitude?.description}`;
+          this._longitude = `${
+            tags.GPSLongitudeRef?.description.toLowerCase().startsWith('west')
+              ? '-'
+              : ''
+          }${tags?.GPSLongitude?.description}`;
+          this._model = tags?.Model?.description;
+        }
+      }
+    } catch (error) {
+      console.error(error);
     }
   }
 
